@@ -1,0 +1,69 @@
+{
+	"info": {
+		"_postman_id": "bae50fba-1379-4d2e-bd58-0c9dbe0bbd1d",
+		"name": "API - currencyExchange",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "338624"
+	},
+	"item": [
+		{
+			"name": "Token Generate",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "userApp",
+						"value": "6880087"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/auth/authenticate",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"authenticate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "set Exchange",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "_access_token_",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2ODgwMDkwIn0.ejiuGVKiJomDbA8relWHEB6acp9ZqozVeglPVqYOhMs"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"monedaOrigen\":\"USD\",\r\n    \"montoMonedaOrigen\":200,\r\n    \"monedaDestino\":\"PEN\",\r\n    \"tipoCambioMonedaDestino\":3.72\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/exchange",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"exchange"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

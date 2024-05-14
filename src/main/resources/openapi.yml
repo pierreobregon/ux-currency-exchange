@@ -1,0 +1,91 @@
+openapi: 3.0.3
+info:
+        title: API de Experiencia
+        description: API para autenticación y cambio de moneda
+        version: 1.0.0
+paths:
+        /auth/authenticate:
+                post:
+                        summary: Autenticar usuario
+                        parameters:
+                                - name: userApp
+                                  in: header
+                                  required: true
+                                  schema:
+                                          type: string
+                        responses:
+                                '200':
+                                        description: Autenticación exitosa
+                                        content:
+                                                application/json:
+                                                        schema:
+                                                                type: object
+                                                                properties:
+                                                                        token:
+                                                                                type: string
+                                '401':
+                                        description: Usuario No autorizado
+                                        content:
+                                                application/json:
+                                                        schema:
+                                                                type: object
+                                                                properties:
+                                                                        codigoError:
+                                                                                type: integer
+                                                                        descripcionError:
+                                                                                type: string
+        /api/exchange:
+                post:
+                        summary: Realizar cambio de moneda
+                        parameters:
+                                - name: _access_token_
+                                  in: header
+                                  required: true
+                                  schema:
+                                          type: string
+                        requestBody:
+                                required: true
+                                content:
+                                        application/json:
+                                                schema:
+                                                        type: object
+                                                        properties:
+                                                                monedaOrigen:
+                                                                        type: string
+                                                                montoMonedaOrigen:
+                                                                        type: number
+                                                                monedaDestino:
+                                                                        type: string
+                                                                tipoCambioMonedaDestino:
+                                                                        type: number
+                        responses:
+                                '200':
+                                        description: Cambio de moneda exitoso
+                                        content:
+                                                application/json:
+                                                        schema:
+                                                                type: object
+                                                                properties:
+                                                                        userApp:
+                                                                                type: string
+                                                                        monedaOrigen:
+                                                                                type: string
+                                                                        montoMonedaOrigen:
+                                                                                type: number
+                                                                        monedaDestino:
+                                                                                type: string
+                                                                        tipoCambioMonedaDestino:
+                                                                                type: number
+                                                                        montoMonedaDestino:
+                                                                                type: number
+                                '501':
+                                        description: Error en el Sistema
+                                        content:
+                                                application/json:
+                                                        schema:
+                                                                type: object
+                                                                properties:
+                                                                        codigoError:
+                                                                                type: integer
+                                                                        descripcionError:
+                                                                                type: string
